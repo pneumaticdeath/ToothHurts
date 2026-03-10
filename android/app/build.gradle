@@ -1,0 +1,107 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) flutterVersionCode = '1'
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) flutterVersionName = '1.0'
+
+android {
+    namespace "io.patenaude.toothhurts"
+    compileSdk 34
+    ndkVersion flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        google.java.srcDirs += 'src/google/kotlin'
+        amazon.java.srcDirs += 'src/amazon/kotlin'
+    }
+
+    defaultConfig {
+        // Replace with your actual application ID before publishing
+        applicationId "io.patenaude.toothhurts"
+        minSdk 21
+        targetSdk 34
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+    }
+
+    // ── Store flavors ─────────────────────────────────────────────────────────
+    flavorDimensions += "store"
+
+    productFlavors {
+        google {
+            dimension "store"
+            // applicationId stays as defaultConfig
+            // Google Play Services, Firebase, AdMob are available
+            manifestPlaceholders["appName"] = "ToothHurts"
+        }
+
+        amazon {
+            dimension "store"
+            // NOTE: Build with --flavor amazon to produce the Amazon APK.
+            // Flutter build command: flutter build apk --flavor amazon --target lib/main_amazon.dart
+            //
+            // Amazon DOES NOT support AAB; always produce an APK.
+            // Remove or guard any Google Play Services dependencies below.
+            manifestPlaceholders["appName"] = "ToothHurts"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.debug  // Replace with your release keystore
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            applicationIdSuffix ".debug"
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    // Core Kotlin stdlib
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // ── Google-only dependencies ───────────────────────────────────────────
+    // Only included in the 'google' flavor build.
+    // Uncomment and add if you add Google-specific features:
+    //
+    // googleImplementation 'com.google.android.gms:play-services-games:23.1.0'
+    // googleImplementation 'com.google.firebase:firebase-analytics:21.5.0'
+
+    // ── Amazon-only dependencies ───────────────────────────────────────────
+    // Only included in the 'amazon' flavor build.
+    // Uncomment if you add Amazon IAP:
+    //
+    // amazonImplementation files('libs/in-app-purchasing-2.0.76.jar')
+
+    // ── Shared dependencies ────────────────────────────────────────────────
+    // None required beyond what Flutter plugins bring in transitively.
+}

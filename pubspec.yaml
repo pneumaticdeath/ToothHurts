@@ -1,0 +1,32 @@
+name: tooth_hurts
+description: Count the baby's teeth before you get bitten!
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Flame game engine
+  flame: ^1.18.0
+  flame_audio: ^2.10.0
+
+  # Haptic feedback (iOS CoreHaptics + Android VibrationEffect)
+  vibration: ^1.8.4
+
+  # Persistence: high scores, settings, muted state
+  shared_preferences: ^2.2.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/audio/
+    - assets/images/

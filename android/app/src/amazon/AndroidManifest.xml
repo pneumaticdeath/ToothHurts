@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Amazon flavor overrides.
+     Key difference: no Google Play Services intent filters.
+     Amazon's store handles distribution via their own framework. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Amazon Device Messaging permission (if using ADM push) -->
+    <!-- <uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE"/> -->
+</manifest>
