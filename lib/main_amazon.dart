@@ -26,5 +26,5 @@ import 'main.dart';
 ///    tagForChildDirectedTreatment = true in any ad SDK and declare
 ///    COPPA compliance in the Amazon Developer Console.
 void main() {
-  _bootstrap(AppFlavor.amazon);
+  bootstrap(AppFlavor.amazon);
 }

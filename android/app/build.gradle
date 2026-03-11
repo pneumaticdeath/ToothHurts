@@ -20,7 +20,7 @@ if (flutterVersionName == null) flutterVersionName = '1.0'
 
 android {
     namespace "io.patenaude.toothhurts"
-    compileSdk 34
+    compileSdk 36
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -41,8 +41,8 @@ android {
     defaultConfig {
         // Replace with your actual application ID before publishing
         applicationId "io.patenaude.toothhurts"
-        minSdk 21
-        targetSdk 34
+        minSdkVersion flutter.minSdkVersion
+        targetSdk 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -86,9 +86,6 @@ flutter {
 }
 
 dependencies {
-    // Core Kotlin stdlib
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
     // ── Google-only dependencies ───────────────────────────────────────────
     // Only included in the 'google' flavor build.
     // Uncomment and add if you add Google-specific features:

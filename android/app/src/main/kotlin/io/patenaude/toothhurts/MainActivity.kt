@@ -1,4 +1,4 @@
-package com.yourname.tooth_hurts
+package io.patenaude.toothhurts
 
 import io.flutter.embedding.android.FlutterActivity
 

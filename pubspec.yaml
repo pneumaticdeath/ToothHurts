@@ -15,7 +15,7 @@ dependencies:
   flame_audio: ^2.10.0
 
   # Haptic feedback (iOS CoreHaptics + Android VibrationEffect)
-  vibration: ^1.8.4
+  vibration: ^2.0.0
 
   # Persistence: high scores, settings, muted state
   shared_preferences: ^2.2.3
@@ -24,9 +24,28 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  image_path: "assets/icon.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  macos:
+    generate: true
+    image_path: "assets/icon.png"
+  web:
+    generate: true
+    image_path: "assets/icon.png"
+    background_color: "#FF6B8A"
+    theme_color: "#FF6B8A"
+  windows:
+    generate: true
+    image_path: "assets/icon.png"
 
 flutter:
   uses-material-design: true
   assets:
     - assets/audio/
     - assets/images/
+    - assets/icon.png

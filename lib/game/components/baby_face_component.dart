@@ -111,20 +111,23 @@ class BabyFaceComponent extends PositionComponent {
     if (game == null) return;
 
     final diff = game.levelState.difficulty;
-    final dur = diff.squirmDuration;
     final dx = (_random.nextDouble() - 0.5) * 2 * diff.squirmMaxOffset;
-    final da = (_random.nextDouble() - 0.5) * 2 * diff.squirmMaxAngle;
 
     _isSquirming = true;
     game.audioManager.playSquirm();
 
+    // Short rapid side-to-side jabs — no rotation
+    final jabCount = 2 + _random.nextInt(3); // 2–4 jabs per squirm
     final moveEffect = MoveEffect.by(
       Vector2(dx, 0),
-      EffectController(duration: dur, reverseDuration: dur),
+      EffectController(
+        duration: 0.09,
+        reverseDuration: 0.09,
+        repeatCount: jabCount,
+      ),
     );
     moveEffect.onComplete = () => _isSquirming = false;
     add(moveEffect);
-    add(RotateEffect.by(da, EffectController(duration: dur, reverseDuration: dur)));
 
     _resetSquirmTimer();
   }

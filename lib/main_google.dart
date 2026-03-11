@@ -18,5 +18,5 @@ import 'main.dart';
 ///     google { ... resValue "string", "app_entry", "main_google" }
 ///   }
 void main() {
-  _bootstrap(AppFlavor.google);
+  bootstrap(AppFlavor.google);
 }

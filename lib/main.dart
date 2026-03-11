@@ -6,10 +6,10 @@ import 'ui/screens/main_menu_screen.dart';
 
 /// Default entry point — targets iOS App Store.
 void main() {
-  _bootstrap(AppFlavor.ios);
+  bootstrap(AppFlavor.ios);
 }
 
-void _bootstrap(AppFlavor flavor) {
+void bootstrap(AppFlavor flavor) {
   WidgetsFlutterBinding.ensureInitialized();
   FlavorConfig.initialize(flavor);
 
